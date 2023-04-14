@@ -1,0 +1,46 @@
+/* Example CSS rules for customizing the application */
+body {
+    background-color: #f1f1f1;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: #4285f4;
+}
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #ccc;
+}
+
+input[type="text"], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $.get("indian_liver_patient.csv", function(data){
+        var rows = data.split("\n");
+        var table = $("<table></table>");
+        for(var i = 0; i < rows.length; i++){
+            var cells = rows[i].split(",");
+            var row = $("<tr></tr>");
+            for(var j = 0; j < cells.length; j++){
+                row.append($("<td>" + cells[j] + "</td>"));
+            }
+            table.append(row);
+        }
+        $("#predictions").append(table);
+    });
+});
+</script>
